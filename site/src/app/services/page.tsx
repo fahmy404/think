@@ -7,14 +7,14 @@ import { services } from '@/content/services';
 
 export const metadata: Metadata = {
   title: 'Services',
-  description: 'Exhibition stand design, conference partitions, branded event spaces and on-site production by THINK Agency.',
+  description: 'Exhibition stands, conference environments, event management and production for leading companies.',
   alternates: { canonical: '/services' },
 };
 
 export default function Services() {
   return (
     <>
-      <PageHead eyebrow="Services" title={['Spaces that', 'bring brands', 'together.']} lede="From exhibition stands to conference environments, THINK takes your space from first idea to event-ready installation." />
+      <PageHead eyebrow="Capabilities" title={['From bold', 'concepts to', 'event-ready.']} lede="Design, production and event capabilities to take your brief from the first spatial idea to the finished environment on site." />
       <div className="wrap" style={{ paddingBottom: 'var(--section)' }}>
         {services.map((s) => (
             <Reveal as="section" key={s.slug} id={s.slug} className="sdetail">

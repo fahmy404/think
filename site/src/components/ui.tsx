@@ -22,9 +22,9 @@ export function WorkItem({ p, index }: { p: Project; index: number }) {
         <div className="work__meta">
           <h3 className="work__name">{p.name}</h3>
           <div className="work__sub label">
-            <span>{p.client}</span>
-            <span>{p.category}</span>
-            <span>{p.year}</span>
+            {[p.client, p.category, p.year].filter(Boolean).map((label) => (
+              <span key={label}>{label}</span>
+            ))}
           </div>
         </div>
       </Link>

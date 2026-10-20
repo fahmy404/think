@@ -11,8 +11,8 @@ export const site = {
   /** TODO: set the real production domain. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   description:
-    'We design and deliver branded exhibition stands, conference partitions and event spaces that bring your brand into focus.',
-  positioning: 'Branded spaces, made memorable.',
+    'Founded in 2015, THINK designs and delivers exhibition stands, conference environments and branded event spaces—from first concept through on-site installation.',
+  positioning: 'Spaces that move brands forward.',
   locale: 'en',
 } as const;
 

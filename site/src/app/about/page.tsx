@@ -8,30 +8,55 @@ import { process as steps } from '@/content/services';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'THINK creates branded exhibition stands, conference partitions and event spaces, from concept through installation.',
+  description: 'Founded in 2015, THINK designs and delivers exhibition stands, conference environments and branded event spaces for leading companies.',
   alternates: { canonical: '/about' },
 };
 
 export default function About() {
   return (
     <>
-      <PageHead eyebrow="About THINK" title={['We make', 'space for', 'your brand.']} lede="A creative production partner for brands that meet the real world at events." />
+      <PageHead eyebrow="About THINK" title={['Space for', 'ambitious', 'brands.']} lede="An experiential design and production partner for organizations that need their brand to show up with clarity and distinction." />
 
       <section className="section wrap" style={{ paddingTop: 0 }}>
         <div className="about-grid">
-          <div className="a-l"><p className="eyebrow">What we believe</p></div>
+          <div className="a-l"><p className="eyebrow">Our story</p></div>
           <div className="a-r">
             <h2 className="big-statement">
-              <Lines lines={['The right space', 'changes how people', 'meet your brand.']} />
+              <Lines lines={['Built on ideas.', 'Made for', 'lasting impact.']} />
             </h2>
             <Reveal>
               <p className="body" style={{ marginTop: 36 }}>
-                THINK creates exhibition stands, conference partitions and branded event environments. We bring spatial design and production together, so the experience feels considered from the first welcome to the last detail.
+                Founded in 2015, THINK is a design and production company creating distinctive spaces for exhibitions, conferences and corporate events. Our creative and production teams work together to turn each brief into a well-designed environment, built around the client, the venue and the audience.
               </p>
               <p className="body" style={{ marginTop: 18 }}>
-                Every project starts with what you need the space to do. Then we shape a clear idea, develop the design and prepare it to work in the venue.
+                From the first concept and 3D design to fabrication, installation and event-day delivery, we bring every detail together under one roof. Our work includes custom exhibition stands, conference partitions, branded environments and event production for organizations across industries.
               </p>
               <Link href="/services" className="link" style={{ marginTop: 32 }}>Explore our services <Arrow /></Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="section wrap" style={{ paddingTop: 0 }} aria-label="Our vision and mission">
+        <div className="about-grid">
+          <div className="a-l"><p className="eyebrow">Our vision</p></div>
+          <div className="a-r">
+            <h2 className="big-statement"><Lines lines={['Global thinking.', 'Rooted in', 'local character.']} /></h2>
+            <Reveal>
+              <p className="body" style={{ marginTop: 28 }}>
+                To serve brands across industries with a world-class perspective shaped by the creativity, energy and culture of Egypt.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+        <div className="about-grid" style={{ marginTop: 'var(--section)' }}>
+          <div className="a-l"><p className="eyebrow">Our mission</p></div>
+          <div className="a-r">
+            <h2 className="big-statement"><Lines lines={['Make every', 'brand stand', 'out.']} /></h2>
+            <Reveal>
+              <p className="body" style={{ marginTop: 28 }}>
+                We turn each client brief into a thoughtful, buildable design, then coordinate production and on-site delivery with care. Every decision—from space planning and materials to installation—is guided by the purpose of the event and the experience it should create.
+              </p>
             </Reveal>
           </div>
         </div>

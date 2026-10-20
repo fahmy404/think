@@ -1,13 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-/**
- * The original THINK wordmark, cropped from the supplied artwork (no redraw).
- * mix-blend-mode: screen lets the artwork's black field merge into the page.
- */
 export function Wordmark({
   priority = false,
-  sizes = '132px',
+  sizes = '126px',
   className = '',
   home = true,
 }: {
@@ -18,10 +14,10 @@ export function Wordmark({
 }) {
   const img = (
     <Image
-      src="/brand/wordmark-600.webp"
+      src="/brand/think-agency.png"
       alt="THINK Agency"
-      width={600}
-      height={173}
+      width={1432}
+      height={363}
       sizes={sizes}
       priority={priority}
     />

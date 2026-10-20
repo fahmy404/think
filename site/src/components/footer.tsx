@@ -10,10 +10,10 @@ export function Footer() {
         <div className="footer__top">
           <div className="footer__brand">
             <Image
-              src="/brand/wordmark-1200.webp"
+              src="/brand/think-agency.png"
               alt="THINK Agency"
-              width={1200}
-              height={345}
+              width={1432}
+              height={363}
               sizes="(min-width: 900px) 520px, 90vw"
               loading="lazy"
             />

@@ -4,14 +4,14 @@ import { PageHead } from '@/components/page-head';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Start a project with THINK Agency.',
+  description: 'Share your event brief with THINK and start planning a considered branded environment.',
   alternates: { canonical: '/contact' },
 };
 
 export default function Contact() {
   return (
     <>
-      <PageHead eyebrow="Contact" title={['Start a', 'project']} lede="Tell us about your project. Fields marked with an asterisk are required." />
+      <PageHead eyebrow="Start a conversation" title={['Tell us about', 'the brief.']} lede="Give us a first look at your event, the space and what you need it to achieve. Fields marked with an asterisk are required." />
       <section className="wrap" style={{ paddingBottom: 'var(--section)' }}>
         <div className="contact-grid">
           <div className="c-form"><ContactForm /></div>

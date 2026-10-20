@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { services } from '@/content/services';
 import { Arrow, AlertIcon, CheckIcon } from './icons';
 
-type Errors = Partial<Record<'name' | 'email' | 'phone' | 'details', string>>;
+type Errors = Partial<Record<'name' | 'company' | 'email' | 'phone' | 'details', string>>;
 type State = 'idle' | 'loading' | 'success' | 'error';
 
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -17,6 +17,7 @@ export function ContactForm() {
   function validate(d: FormData): Errors {
     const e: Errors = {};
     if (!String(d.get('name') ?? '').trim()) e.name = 'Please enter your name.';
+    if (!String(d.get('company') ?? '').trim()) e.company = 'Please enter your company or organization.';
     const email = String(d.get('email') ?? '').trim();
     if (!email) e.email = 'Please enter your email.';
     else if (!emailRe.test(email)) e.email = 'Please enter a valid email address.';
@@ -74,14 +75,14 @@ export function ContactForm() {
   return (
     <form className="form" onSubmit={onSubmit} noValidate aria-describedby="form-status">
       <div className="field" data-invalid={!!errors.name}>
-        <label htmlFor="name">Name *</label>
+        <label htmlFor="name">Full name *</label>
         <input id="name" name="name" autoComplete="name" {...field('name')} />
         <span className="field__err" id="err-name">{errors.name}</span>
       </div>
-      <div className="field">
-        <label htmlFor="company">Company</label>
-        <input id="company" name="company" autoComplete="organization" />
-        <span className="field__err" />
+      <div className="field" data-invalid={!!errors.company}>
+        <label htmlFor="company">Company or organization *</label>
+        <input id="company" name="company" autoComplete="organization" {...field('company')} />
+        <span className="field__err" id="err-company">{errors.company}</span>
       </div>
       <div className="field" data-invalid={!!errors.email}>
         <label htmlFor="email">Email *</label>
@@ -106,12 +107,12 @@ export function ContactForm() {
       </div>
       <div className="field">
         <label htmlFor="budget">Budget (optional)</label>
-        <input id="budget" name="budget" placeholder="Your estimate" />
+        <input id="budget" name="budget" placeholder="e.g. 25,000 USD" />
         <span className="field__err" />
       </div>
       <div className="field f-full" data-invalid={!!errors.details}>
         <label htmlFor="details">Project details *</label>
-        <textarea id="details" name="details" {...field('details')} />
+        <textarea id="details" name="details" placeholder="Event, venue and city, date, approximate space, audience and goals..." {...field('details')} />
         <span className="field__err" id="err-details">{errors.details}</span>
       </div>
 

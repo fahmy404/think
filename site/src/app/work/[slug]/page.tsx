@@ -45,11 +45,12 @@ export default async function CaseStudy({ params }: { params: Promise<Params> })
         <dl className="work__sub label" style={{ marginTop: 40, gap: 40 }}>
           <div><dt>Client</dt><dd style={{ color: 'var(--paper)', marginTop: 8 }}>{p.client}</dd></div>
           <div><dt>Type</dt><dd style={{ color: 'var(--paper)', marginTop: 8 }}>{p.category}</dd></div>
-          <div><dt>Year</dt><dd style={{ color: 'var(--paper)', marginTop: 8 }}>{p.year}</dd></div>
+          {p.year && <div><dt>Year</dt><dd style={{ color: 'var(--paper)', marginTop: 8 }}>{p.year}</dd></div>}
         </dl>
+        {p.summary && <p className="lede" style={{ marginTop: 32 }}>{p.summary}</p>}
       </header>
 
-      <div className="wrap">
+      <div className="wrap case-cover">
         <Image src={p.cover.src} alt={p.cover.alt} width={p.cover.width} height={p.cover.height} sizes="100vw" priority style={{ width: '100%', height: 'auto' }} />
       </div>
 
@@ -60,11 +61,15 @@ export default async function CaseStudy({ params }: { params: Promise<Params> })
             <div className="sd-main"><p className="lede" style={{ maxWidth: '40ch' }}>{v}</p></div>
           </Reveal>
         ))}
-        {p.gallery?.map((g) => (
-          <Reveal key={g.src} className="">
-            <Image src={g.src} alt={g.alt} width={g.width} height={g.height} sizes="100vw" loading="lazy" style={{ width: '100%', height: 'auto', marginBottom: 'var(--gap)' }} />
-          </Reveal>
-        ))}
+        {p.gallery && p.gallery.length > 0 && (
+          <div className="case-gallery" aria-label={`${p.client} project gallery`}>
+            {p.gallery.map((g) => (
+              <Reveal key={g.src} className="case-gallery__item">
+                <Image src={g.src} alt={g.alt} width={g.width} height={g.height} sizes="(max-width: 700px) 92vw, 45vw" loading="lazy" />
+              </Reveal>
+            ))}
+          </div>
+        )}
       </section>
 
       {related.length > 0 && (

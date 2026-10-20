@@ -9,7 +9,7 @@ out/
 build/
 
 # Heavy raw source assets (>100MB blocked by GitHub)
-assets-source/*.pdf
+assets-source/
 
 # Debug and logs
 *.log

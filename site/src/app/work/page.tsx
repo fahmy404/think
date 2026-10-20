@@ -1,14 +1,16 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Arrow } from '@/components/icons';
-import { WorkItem } from '@/components/ui';
+import { ImagesScrollingAnimation } from '@/components/ui/images-scrolling-animation';
+import { VideoShowcase } from '@/components/ui/video-showcase';
 import { PageHead } from '@/components/page-head';
 import { projects } from '@/content/projects';
+import { portfolioVideos } from '@/content/videos';
 import { services } from '@/content/services';
 
 export const metadata: Metadata = {
   title: 'Spaces',
-  description: 'Discover the kinds of branded spaces THINK designs and produces for exhibitions, conferences and events.',
+  description: 'Explore selected experiential design projects by THINK, including exhibition stands, conference environments and event spaces.',
   alternates: { canonical: '/work' },
 };
 
@@ -17,14 +19,13 @@ export default function Work() {
 
   return (
     <>
-      <PageHead eyebrow={projects.length > 0 ? 'Selected spaces' : 'Spaces'} title={projects.length > 0 ? ['Made for', 'real moments.'] : ['Make your', 'next event', 'feel like you.']} lede="Explore the event spaces THINK designs and brings to life for brands." />
+      <PageHead eyebrow={projects.length > 0 ? 'Selected work' : 'What we create'} title={projects.length > 0 ? ['Made for', 'real moments.'] : ['Spaces with', 'purpose.']} lede="Explore the environments THINK designs and delivers for exhibitions, conferences and corporate events." />
       <section className="section wrap" style={{ paddingTop: 0 }} aria-label={projects.length > 0 ? 'Selected project work' : 'Types of event spaces'}>
         {projects.length > 0 ? (
-          <div className="works">
-            {projects.map((project, index) => (
-              <WorkItem key={project.slug} p={project} index={index} />
-            ))}
-          </div>
+          <>
+            <ImagesScrollingAnimation projects={projects} includeGallery />
+            <VideoShowcase videos={portfolioVideos} />
+          </>
         ) : (
           <div className="spaces-grid">
             {spaces.map((space) => (

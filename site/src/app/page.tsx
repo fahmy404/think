@@ -1,11 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Arrow } from '@/components/icons';
+import { LogoCloud } from '@/components/logo-cloud';
 import { Lines, Reveal } from '@/components/motion';
 import { ProcessScroller } from '@/components/process-scroller';
-import { WorkItem } from '@/components/ui';
+import { ImagesScrollingAnimation } from '@/components/ui/images-scrolling-animation';
+import { WaveField } from '@/components/wave-field';
+import { VideoShowcase } from '@/components/ui/video-showcase';
 import { clients } from '@/content/clients';
 import { projects } from '@/content/projects';
+import { portfolioVideos } from '@/content/videos';
 import { process as steps, services } from '@/content/services';
 import { site } from '@/content/site';
 
@@ -15,10 +19,10 @@ export default function Home() {
       {/* HERO */}
       <section className="hero" aria-labelledby="hero-title">
         <div className="wrap hero__content">
-          <p className="eyebrow reveal" data-in="true">Exhibition stands · Conference spaces · Event design</p>
+          <p className="eyebrow reveal" data-in="true">Exhibitions · Conferences · Brand experiences</p>
           <h1 id="hero-title" className="display hero__title" style={{ marginTop: 28 }}>
             <Lines
-              lines={['Your brand,', 'built into', 'the experience.']}
+              lines={['Designed to', 'make your', 'brand matter.']}
               delay={500}
             />
           </h1>
@@ -28,7 +32,7 @@ export default function Home() {
             </p>
             <div className="hero__actions reveal" data-in="true" style={{ '--d': '1100ms' } as React.CSSProperties}>
               <Link href="/contact" className="btn btn--solid">
-                Plan your space <Arrow />
+                Start a brief <Arrow />
               </Link>
               <Link href="/services" className="link">
                 Explore services <Arrow />
@@ -37,31 +41,27 @@ export default function Home() {
           </div>
         </div>
         <div className="hero__art">
-          <picture>
-            <source
-              media="(max-width: 899px)"
-              type="image/avif"
-              srcSet="/brand/hero-mobile-1100.avif"
-            />
-            <source
-              media="(max-width: 899px)"
-              type="image/webp"
-              srcSet="/brand/hero-mobile-1100.webp"
-            />
-            <source type="image/avif" srcSet="/brand/banner-1440.avif 1440w, /brand/banner-2560.avif 2560w" sizes="100vw" />
-            <source type="image/webp" srcSet="/brand/banner-1440.webp 1440w, /brand/banner-2560.webp 2560w" sizes="100vw" />
-            {/* Original THINK artwork. Critical LCP image: eager + high priority. */}
-            <img
-              src="/brand/banner-2560.webp"
-              alt="THINK wordmark above a field of illuminated dots"
-              width={2560}
-              height={366}
-              fetchPriority="high"
-              decoding="async"
-            />
-          </picture>
+          <WaveField />
+          <Image
+            className="hero__wordmark"
+            src="/brand/think-agency.png"
+            alt="THINK Agency"
+            width={1432}
+            height={363}
+            priority
+          />
         </div>
       </section>
+
+      {clients.length > 0 && (
+        <section className="client-strip wrap" aria-labelledby="clients-h">
+          <div className="client-strip__head">
+            <p id="clients-h" className="label">Trusted by leading brands</p>
+            <Link href="/clients" className="link">View all clients <Arrow /></Link>
+          </div>
+          <LogoCloud clients={clients.slice(0, 8)} variant="strip" />
+        </section>
+      )}
 
       {projects.length > 0 && (
         <section className="section wrap" aria-labelledby="work-h" style={{ paddingTop: 0 }}>
@@ -74,11 +74,8 @@ export default function Home() {
             </div>
             <Link href="/work" className="link">All spaces <Arrow /></Link>
           </div>
-          <div className="works">
-            {projects.slice(0, 4).map((project, index) => (
-              <WorkItem key={project.slug} p={project} index={index} />
-            ))}
-          </div>
+          <ImagesScrollingAnimation projects={projects.slice(0, 5)} includeGallery />
+          <VideoShowcase videos={portfolioVideos} />
         </section>
       )}
 
@@ -90,11 +87,11 @@ export default function Home() {
           </div>
           <div className="a-r">
             <h2 id="intro" className="big-statement">
-              <Lines lines={['Designed around', 'your brand.', 'Made for the', 'real world.']} />
+              <Lines lines={['Clear ideas.', 'Considered', 'spaces.']} />
             </h2>
             <Reveal className="" delay={150}>
               <p className="body" style={{ marginTop: 40 }}>
-                We design and deliver exhibition stands, conference partitions and branded event spaces. From the first layout to the final on-site detail, we make every part of the experience feel like your brand.
+                We translate brand objectives into physical spaces. By bringing spatial design, environmental graphics and event delivery together, every interaction feels purposeful and every detail feels considered.
               </p>
               <Link href="/about" className="link" style={{ marginTop: 36 }}>
                 Meet THINK <Arrow />
@@ -110,11 +107,11 @@ export default function Home() {
           <div className="space-feature__intro">
             <p className="eyebrow">Spaces with purpose</p>
             <h2 id="space-h" className="h2" style={{ marginTop: 28 }}>
-              <Lines lines={['Make room', 'for a better', 'conversation.']} />
+              <Lines lines={['Designed for', 'the moments', 'that matter.']} />
             </h2>
           </div>
           <div className="space-feature__detail">
-            <p className="body">A great event space does more than look the part. It welcomes visitors, makes your story easy to understand and gives your team the right setting to connect.</p>
+            <p className="body">A great event space does more than look the part. It makes your story clear, welcomes the right conversations and gives your team the setting to connect with purpose.</p>
             <ul className="space-tags" aria-label="Spaces we create">
               <li>Exhibition stands</li>
               <li>Conference partitions</li>
@@ -131,7 +128,7 @@ export default function Home() {
           <div>
             <p className="eyebrow">Capabilities</p>
             <h2 id="serv-h" className="h2" style={{ marginTop: 28 }}>
-              <Lines lines={['What we', 'do']} />
+              <Lines lines={['Design.', 'Delivery.', 'Detail.']} />
             </h2>
           </div>
           <Link href="/services" className="link">All services <Arrow /></Link>
@@ -155,37 +152,12 @@ export default function Home() {
         <ProcessScroller steps={steps} />
       </section>
 
-      {clients.length > 0 && (
-        <section className="section wrap" aria-labelledby="clients-h" style={{ paddingTop: 0 }}>
-          <div className="shead">
-            <div>
-              <p className="eyebrow">In good company</p>
-              <h2 id="clients-h" className="h2" style={{ marginTop: 28 }}>
-                <Lines lines={['Brands we’ve', 'worked with']} />
-              </h2>
-            </div>
-            <Link href="/clients" className="link">All clients <Arrow /></Link>
-          </div>
-          <ul className="cgrid">
-            {clients.map((client) => (
-              <li key={client.name}>
-                {client.logo ? (
-                  <Image src={client.logo.src} alt={client.name} width={client.logo.width} height={client.logo.height} sizes="(min-width: 900px) 20vw, 45vw" loading="lazy" />
-                ) : (
-                  <span className="cname">{client.name}</span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
       {/* FINAL CTA */}
       <section className="section wrap cta" aria-labelledby="cta-h" style={{ borderTop: '1px solid var(--line)' }}>
         <p className="eyebrow">Next</p>
         <h2 id="cta-h" className="cta__title" style={{ marginTop: 36 }}>
           <Link href="/contact" className="cta__link">
-            <Lines lines={['Let’s shape', 'your next space.']} />
+            <Lines lines={['Bring your next', 'brand experience', 'to life.']} />
             <Arrow />
           </Link>
         </h2>

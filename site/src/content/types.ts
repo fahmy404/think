@@ -5,6 +5,11 @@ export type ImageAsset = {
   height: number;
 };
 
+export type VideoAsset = {
+  src: string;
+  poster: ImageAsset;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -16,8 +21,10 @@ export type Project = {
     | 'Spatial design'
     | 'Branding & graphics'
     | 'Production & installation';
-  year: string;
+  year?: string;
   cover: ImageAsset;
+  /** Optional muted looping reel. Keep the poster image as the fast-loading fallback. */
+  video?: VideoAsset;
   summary?: string;
   challenge?: string;
   approach?: string;
@@ -28,8 +35,11 @@ export type Project = {
 
 export type Client = {
   name: string;
-  /** Path to the OFFICIAL logo file under /public/clients. Monochrome treatment is applied in CSS. */
-  logo?: ImageAsset;
+  /** Preserve the logo's original colors and choose a tile that gives it contrast. */
+  tone: 'light' | 'dark';
+  /** Optional zoom for files that include extra transparent canvas around the mark. */
+  scale?: number;
+  logo: ImageAsset;
 };
 
 export type Service = {

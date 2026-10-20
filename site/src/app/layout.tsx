@@ -6,21 +6,21 @@ import { site } from '@/content/site';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.name} | Exhibition & Event Spaces`, template: `%s | ${site.name}` },
+  title: { default: `${site.name} | Experiential Design & Production`, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     siteName: site.name,
-    title: `${site.name} | Branded Event Spaces`,
+    title: `${site.name} | Brand Experiences, Designed & Delivered`,
     description: site.description,
     url: '/',
     images: [{ url: '/brand/og.png', width: 1200, height: 630, alt: 'THINK Agency' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} | Branded Event Spaces`,
+    title: `${site.name} | Brand Experiences, Designed & Delivered`,
     description: site.description,
     images: ['/brand/og.png'],
   },
@@ -37,7 +37,7 @@ const jsonLd = {
   '@type': 'Organization',
   name: site.name,
   url: site.url,
-  logo: `${site.url}/brand/wordmark-600.png`,
+  logo: `${site.url}/brand/think-agency.png`,
   description: site.description,
 };
 
